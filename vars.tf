@@ -7,3 +7,5 @@ variable "max_size" {}
 variable "min_size" {}
 variable "vpc_zone_identifier" {}
 variable "subnets" {}
+
+
