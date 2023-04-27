@@ -16,7 +16,7 @@ resource "aws_iam_policy" "ssm-policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource": "arn:aws:ssm:us-east-1:820762291138:parameter/${var.env}.${var.component}*"
+        "Resource": "arn:aws:ssm:us-east-1:${data.aws_caller_identity.owner_id.id}:parameter/${var.env}.${var.component}*"
       },
       {
         "Sid": "VisualEditor1",
