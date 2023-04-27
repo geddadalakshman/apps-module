@@ -29,6 +29,7 @@ resource "aws_launch_template" "main" {
     component = var.component
     env = var.env
   } ))
+
 }
 
 resource "aws_autoscaling_group" "main" {
