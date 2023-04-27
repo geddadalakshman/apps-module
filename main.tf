@@ -7,11 +7,12 @@ resource "aws_launch_template" "main" {
 
   image_id = data.aws_ami.ami.id
   instance_type = var.instance_type
-  vpc_security_group_ids = [ aws_security_group.main.id ]
+
 
   instance_market_options {
     market_type = "spot"
   }
+  vpc_security_group_ids = [ aws_security_group.main.id ]
 
   tag_specifications {
     resource_type = "instance"
