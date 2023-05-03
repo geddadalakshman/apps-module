@@ -16,7 +16,13 @@ resource "aws_iam_policy" "ssm-policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource": "arn:aws:ssm:us-east-1:${data.aws_caller_identity.owner_id.id}:parameter/${var.env}.${var.component}*"
+        //        "Resource" : [
+        //          "arn:aws:ssm:us-east-1:${data.aws_caller_identity.account.account_id}:parameter/${var.env}.${var.component}.*",
+        //          "arn:aws:ssm:us-east-1:${data.aws_caller_identity.account.account_id}:parameter/${var.env}.docdb.*",
+        //          "arn:aws:ssm:us-east-1:${data.aws_caller_identity.account.account_id}:parameter/${var.env}.elasticache.*"
+        //          /// How to limit this permissions, which are unwanted for all components
+        //        ]
+        Resource : [for k in local.parameters : "arn:aws:ssm:us-east-1:${data.aws_caller_identity.owner_id.account_id}:parameter/${var.env}.${k}.*"]
       },
       {
         "Sid": "VisualEditor1",
