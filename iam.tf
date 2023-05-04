@@ -22,7 +22,7 @@ resource "aws_iam_policy" "ssm-policy" {
         //          "arn:aws:ssm:us-east-1:${data.aws_caller_identity.account.account_id}:parameter/${var.env}.elasticache.*"
         //          /// How to limit this permissions, which are unwanted for all components
         //        ]
-        Resource : [for k in local.parameters : "arn:aws:ssm:us-east-1:${data.aws_caller_identity.owner_id.account_id}:parameter/${var.env}.${k}.*"]
+        Resource : [for k in local.parameters : "arn:aws:ssm:us-east-1:${data.aws_caller_identity.domain.account_id}:parameter/${var.env}.${k}.*"]
       },
       {
         "Sid": "VisualEditor1",
